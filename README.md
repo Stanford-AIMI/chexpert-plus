@@ -13,4 +13,11 @@ CheXpert Plus: Hundreds Thousands of Aligned Radiology Texts, Images, and Patien
 
 
 ## Model
-
+| Type   | Model      | Link |
+|--------|------------|------|
+| RRS    |            |      |
+| RRG    |            |      |
+| VQGAN  | XrayVQGAN  |      |
+| DINOv2 | XrayDINOv2 |      |
+| CLIP   | XrayCLIP   |      |
+| LLaMA  | RadLLaMA   |      |

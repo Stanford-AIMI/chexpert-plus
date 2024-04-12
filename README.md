@@ -7,8 +7,7 @@ CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images, and Pat
 ## Table of Content
 - [RadGraph-XL](#RadGraph-XL)
 - [CheXbert](#chexbert)
-- [Data](#data)
-- [Model](#model)
+- [Model Zoo](#model_zoo)
 
 ## RadGraph-XL
 
@@ -140,9 +139,7 @@ print(json.dumps(findings_to_diseases, indent=4))
 ```
 
 
-## Data
-
-## Model
+## Model Zoo
 
 | Type   | Datasets        | Model      | Link                                                                            | Tutorial                                                                                             |
 |--------|-----------------|------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|

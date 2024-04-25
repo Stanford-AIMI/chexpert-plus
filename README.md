@@ -7,7 +7,7 @@ CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images, and Pat
 ## Table of Content
 - [RadGraph-XL](#RadGraph-XL)
 - [CheXbert](#chexbert)
-- [Model Zoo](#model_zoo)
+- [Model Zoo](#model-zoo)
 
 ## RadGraph-XL
 
@@ -143,8 +143,7 @@ print(json.dumps(findings_to_diseases, indent=4))
 
 | Type   | Datasets        | Model      | Link                                                                            | Tutorial                                                                                             |
 |--------|-----------------|------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| RRS    |                 |            |                                                                                 |                                                                                                      |
-| RRG    |                 |            |                                                                                 |                                                                                                      |
+| RRG    |    Mimic-cxr & Chexpert Plus             |         [Swinv2](https://huggingface.co/docs/transformers/en/model_doc/swinv2#transformers.Swinv2Model)/bert-decoder-2-layers                   |     [🤗](tutorials/RRG/INDEX.md)           | [Doc](tutorials/RRG/INDEX.md) 
 | VQGAN  | Xray Collection | XrayVQGAN  | [🤗](https://huggingface.co/StanfordAIMI/XrayVQGAN)                             | [Doc](https://github.com/CompVis/taming-transformers/blob/master/scripts/reconstruction_usage.ipynb) | 
 | DINOv2 | Xray Collection | XrayDINOv2 | [🤗](https://huggingface.co/StanfordAIMI/dinov2-base-xray-518)                  | [Doc](https://huggingface.co/docs/transformers/model_doc/dinov2)                                     |
 | CLIP   | Xray Collection | XrayCLIP   | [🤗](https://huggingface.co/StanfordAIMI/XrayCLIP__vit-b-16__laion2b-s34b-b88k) | [Doc](https://huggingface.co/docs/transformers/model_doc/clip)                                       |

@@ -9,6 +9,49 @@
  |   mimic-cxr-chexpert-findings              |  [Swinv2](https://huggingface.co/docs/transformers/en/model_doc/swinv2#transformers.Swinv2Model)/bert-decoder-2-layers          |      [🤗](https://huggingface.co/IAMJB/chexpert-mimic-cxr-findings-baseline)        |
  |   mimic-cxr-chexpert-impression              |  [Swinv2](https://huggingface.co/docs/transformers/en/model_doc/swinv2#transformers.Swinv2Model)/bert-decoder-2-layers          |      [🤗](https://huggingface.co/IAMJB/chexpert-mimic-cxr-impression-baseline)        |
 
+ ## Usage
+
+ ```python
+import torch
+from PIL import Image
+from transformers import BertTokenizer, ViTImageProcessor, VisionEncoderDecoderModel, GenerationConfig
+import requests
+
+mode = "impression"
+# Model
+model = VisionEncoderDecoderModel.from_pretrained(f"IAMJB/chexpert-mimic-cxr-{mode}-baseline").eval()
+tokenizer = BertTokenizer.from_pretrained(f"IAMJB/chexpert-mimic-cxr-{mode}-baseline")
+image_processor = ViTImageProcessor.from_pretrained(f"IAMJB/chexpert-mimic-cxr-{mode}-baseline")
+#
+# Dataset
+generation_args = {
+    "bos_token_id": model.config.bos_token_id,
+    "eos_token_id": model.config.eos_token_id,
+    "pad_token_id": model.config.pad_token_id,
+    "num_return_sequences": 1,
+    "max_length": 128,
+    "use_cache": True,
+    "beam_width": 2,
+}
+#
+# Inference
+refs = []
+hyps = []
+with torch.no_grad():
+    url = "https://huggingface.co/IAMJB/interpret-cxr-impression-baseline/resolve/main/effusions-bibasal.jpg"
+    image = Image.open(requests.get(url, stream=True).raw)
+    pixel_values = image_processor(image, return_tensors="pt").pixel_values
+    # Generate predictions
+    generated_ids = model.generate(
+        pixel_values,
+        generation_config=GenerationConfig(
+            **{**generation_args, "decoder_start_token_id": tokenizer.cls_token_id})
+    )
+    generated_texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+    print(generated_texts)
+```
+
+ 
 ## Evaluations
 
  
@@ -81,5 +124,4 @@
 | chexbert-5_macro avg_f1-score   | 45.31         | 44.62        | 43.96      | 49.65         |
 | chexbert-all_macro avg_f1-score | 34.96         | 34.99        | 33.81      | 38.60         |
 
- ## Tutorial
- 
+

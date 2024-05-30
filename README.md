@@ -5,6 +5,7 @@ CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images, and Pat
 </div>
 
 ## Table of Content
+
 - [RadGraph-XL](#RadGraph-XL)
 - [CheXbert](#chexbert)
 - [Model Zoo](#model-zoo)
@@ -12,13 +13,16 @@ CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images, and Pat
 ## RadGraph-XL
 
 First install radgraph-XL through the [radgraph](https://pypi.org/project/radgraph/) package:
+
 ```bash
 pip install radgraph
 ```
 
 There are two ways to access the radgraph-XL annotation from the CSV. First, using row index:
+
 ```python
 import json
+
 import pandas as pd
 
 # Load the CSV file into a DataFrame
@@ -36,7 +40,9 @@ annotation = annotations[index]
 print(findings)
 print(annotation)
 ```
+
 Or directly using the section content:
+
 ```python
 import json
 import pandas as pd
@@ -60,10 +66,12 @@ print(annotations_dict[preprocessed_findings])
 ```
 
 ## CheXbert
+
 The json files contains the mapping between CheXpert images and diseases extracted from the radiology report section.
 
 ```python
 import json
+
 json_diseases = [json.loads(s) for s in open("chexbert_labels/findings_fixed.json").readlines()]
 print(json.dumps(json_diseases[0], indent=4))
 > {
@@ -118,33 +126,44 @@ findings_to_diseases = {
 print(json.dumps(findings_to_diseases, indent=4))
 > {
     "Unchanged right internal jugular venous catheter. Stable ....":
-    {
-        "Enlarged Cardiomediastinum": -1.0,
-        "Cardiomegaly": NaN,
-        "Lung Opacity": 1.0,
-        "Lung Lesion": NaN,
-        "Edema": 1.0,
-        "Consolidation": NaN,
-        "Pneumonia": -1.0,
-        "Atelectasis": -1.0,
-        "Pneumothorax": NaN,
-        "Pleural Effusion": NaN,
-        "Pleural Other": NaN,
-        "Fracture": NaN,
-        "Support Devices": 1.0,
-        "No Finding": NaN
-    },
-...
+        {
+            "Enlarged Cardiomediastinum": -1.0,
+            "Cardiomegaly": NaN,
+            "Lung Opacity": 1.0,
+            "Lung Lesion": NaN,
+            "Edema": 1.0,
+            "Consolidation": NaN,
+            "Pneumonia": -1.0,
+            "Atelectasis": -1.0,
+            "Pneumothorax": NaN,
+            "Pleural Effusion": NaN,
+            "Pleural Other": NaN,
+            "Fracture": NaN,
+            "Support Devices": 1.0,
+            "No Finding": NaN
+        },
+    ...
 }
 ```
 
-
 ## Model Zoo
 
-| Type   | Datasets        | Model      | Link                                                                            | Tutorial                                                                                             |
-|--------|-----------------|------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| RRG    |    Mimic-cxr & Chexpert Plus             |         [Swinv2](https://huggingface.co/docs/transformers/en/model_doc/swinv2#transformers.Swinv2Model)/bert-decoder-2-layers                   |     [🤗](tutorials/RRG/INDEX.md)           | [Doc](tutorials/RRG/INDEX.md) 
-| VQGAN  | Xray Collection | XrayVQGAN  | [🤗](https://huggingface.co/StanfordAIMI/XrayVQGAN)                             | [Doc](https://github.com/CompVis/taming-transformers/blob/master/scripts/reconstruction_usage.ipynb) | 
-| DINOv2 | Xray Collection | XrayDINOv2 | [🤗](https://huggingface.co/StanfordAIMI/dinov2-base-xray-518)                  | [Doc](https://huggingface.co/docs/transformers/model_doc/dinov2)                                     |
-| CLIP   | Xray Collection | XrayCLIP   | [🤗](https://huggingface.co/StanfordAIMI/XrayCLIP__vit-b-16__laion2b-s34b-b88k) | [Doc](https://huggingface.co/docs/transformers/model_doc/clip)                                       |
-| LLaMA  | Clinical Corpus | RadLLaMA   | [🤗](https://huggingface.co/StanfordAIMI/RadLLaMA-7b)                           | [Doc](tutorials/radllama/README.md)                                                                  | 
+| Type   | Datasets                                                  | Model                                                                                                                 | Link                                                                            | Tutorial                                                                                             |
+|--------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| RRG    | MIMIC-cxr & Chexpert Plus                                 | [Swinv2](https://huggingface.co/docs/transformers/en/model_doc/swinv2#transformers.Swinv2Model)/bert-decoder-2-layers | [🤗](tutorials/RRG/INDEX.md)                                                    | [Doc](tutorials/RRG/INDEX.md)                                                                        
+| VQGAN  | MIMIC-CXR & CheXpert Plus & PadChest & BIMCV & Candid-PTX | XrayVQGAN                                                                                                             | [🤗](https://huggingface.co/StanfordAIMI/XrayVQGAN)                             | [Doc](https://github.com/CompVis/taming-transformers/blob/master/scripts/reconstruction_usage.ipynb) | 
+| DINOv2 | MIMIC-CXR & CheXpert Plus & PadChest & BIMCV & Candid-PTX | XrayDINOv2                                                                                                            | [🤗](https://huggingface.co/StanfordAIMI/dinov2-base-xray-224)                  | [Doc](https://huggingface.co/docs/transformers/model_doc/dinov2)                                     |
+| CLIP   | MIMIC-CXR & CheXpert Plus & PadChest & BIMCV & Candid-PTX | XrayCLIP                                                                                                              | [🤗](https://huggingface.co/StanfordAIMI/XrayCLIP__vit-b-16__laion2b-s34b-b88k) | [Doc](https://huggingface.co/docs/transformers/model_doc/clip)                                       |
+| LLaMA  | -                                                         | RadLLaMA                                                                                                              | [🤗](https://huggingface.co/StanfordAIMI/RadLLaMA-7b)                           | [Doc](tutorials/radllama/README.md)                                                                  | 
+
+## Reference
+
+```
+@article{chexpert-plus-2024,
+  title={CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images and Patients},
+  author={Pierre Chambon, Jean-Benoit Delbrouck, Thomas Sounack, Shih-Cheng Huang, Zhihong Chen, Maya Varma, Steven QH Truong, Chu The Chuong, Curtis P. Langlotz},
+  journal={arXiv preprint arXiv:xxxx.xxxxx},
+  url={https://arxiv.org/abs/xxxx.xxxxx},
+  year={2024}
+}
+```

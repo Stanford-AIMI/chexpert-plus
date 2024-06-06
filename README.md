@@ -1,6 +1,6 @@
 <div align="center">
 <h1>
-CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images, and Patients
+CheXpert Plus: Augmenting a Large Chest X-ray Dataset with Text Radiology Reports, Patient Demographics and Additional Image Formats
 </h1>
 </div>
 
@@ -159,11 +159,10 @@ print(json.dumps(findings_to_diseases, indent=4))
 ## Reference
 
 ```
-@article{chexpert-plus-2024,
-  title={CheXpert Plus: Hundreds of Thousands of Aligned Radiology Texts, Images and Patients},
-  author={Pierre Chambon, Jean-Benoit Delbrouck, Thomas Sounack, Shih-Cheng Huang, Zhihong Chen, Maya Varma, Steven QH Truong, Chu The Chuong, Curtis P. Langlotz},
-  journal={arXiv preprint arXiv:xxxx.xxxxx},
-  url={https://arxiv.org/abs/xxxx.xxxxx},
+@article{chambon2024chexpert,
+  title={CheXpert Plus: Augmenting a Large Chest X-ray Dataset with Text Radiology Reports, Patient Demographics and Additional Image Formats},
+  author={Chambon, Pierre and Delbrouck, Jean-Benoit and Sounack, Thomas and Huang, Shih-Cheng and Chen, Zhihong and Varma, Maya and Truong, Steven QH and Chuong, Chu The and Langlotz, Curtis P},
+  journal={arXiv preprint arXiv:2405.19538},
   year={2024}
 }
 ```
